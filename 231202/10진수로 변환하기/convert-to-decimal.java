@@ -8,15 +8,11 @@ public class Main {
         StringBuilder sb = new StringBuilder();
 
         String s = br.readLine();
-        int[] arr = new int[s.length()];
+
         int num = 0;
 
         for (int i = 0; i < s.length(); i++) {
-            arr[i] = Character.getNumericValue(s.charAt(i));
-        }
-
-        for (int i : arr) {
-            num = num * 2 + i;
+            num = num * 2 + (s.charAt(i) - '0');
         }
 
         sb.append(num);
