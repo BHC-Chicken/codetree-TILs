@@ -18,8 +18,8 @@ public class Main {
             y = start;
         } else if (start < n * 2) {
             now = 1;
-            x = start;
-            y = start - n;
+            x = start -n;
+            y = n - 1;
 
         } else if (start < n * 3) {
             now = 2;
