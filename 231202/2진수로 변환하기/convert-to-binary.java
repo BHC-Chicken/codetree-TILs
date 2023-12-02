@@ -9,6 +9,10 @@ public class Main {
 
         int n = Integer.parseInt(br.readLine());
 
+        if (n == 0) {
+            sb.append(0);
+        }
+
         while (n > 0) {
             sb.append(n % 2);
             n /= 2;
