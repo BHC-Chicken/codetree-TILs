@@ -7,17 +7,24 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
+        int count = 0;
+        int[] arr = new int[20];
         int n = Integer.parseInt(br.readLine());
 
-        if (n == 0) {
-            sb.append(0);
-        }
+        while (true) {
+            if (n < 2) {
+                arr[count++] = n;
+                break;
+            }
 
-        while (n > 0) {
-            sb.append(n % 2);
+            arr[count++] = n % 2;
             n /= 2;
         }
 
-        System.out.println(sb.reverse());
+        for (int i = count - 1; i >=  0 ; i--) {
+            sb.append(arr[i]);
+        }
+
+        System.out.println(sb);
     }
 }
