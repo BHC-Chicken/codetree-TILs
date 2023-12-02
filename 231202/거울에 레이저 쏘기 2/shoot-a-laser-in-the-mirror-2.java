@@ -27,7 +27,7 @@ public class Main {
             y = n - (start % n);
         } else {
             now = 3;
-            x = Math.abs(start % (n - 1));
+            x = Math.abs((start % n) - (n - 1));
             y = 0;
         }
     }
