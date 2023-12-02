@@ -21,10 +21,10 @@ public class Main {
             n /= 2;
         }
 
-        for (int i = count - 1; i >=  0 ; i--) {
+        for (int i = 0; i < count; i++) {
             sb.append(arr[i]);
         }
 
-        System.out.println(sb);
+        System.out.println(sb.reverse());
     }
 }
