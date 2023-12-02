@@ -46,7 +46,7 @@ public class Main {
     }
 
     static boolean range(int x, int y) {
-        return x > n - 1 || y > n - 1;
+        return x > n - 1 || y > n - 1 || x < 0 || y < 0;
     }
 
     static int backSlashMove(int now) {
@@ -98,6 +98,4 @@ public class Main {
 
         System.out.println(count);
     }
-
-
 }
