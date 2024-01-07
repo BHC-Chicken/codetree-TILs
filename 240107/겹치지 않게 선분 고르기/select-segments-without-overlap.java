@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int answer;
+    static int answer = 1;
     static int n;
     static ArrayList<Integer> list = new ArrayList<>();
     static Pair[] pairs;
