@@ -10,6 +10,7 @@ public class Main {
     static int n;
     static ArrayList<Integer> list = new ArrayList<>();
     static Pair[] pairs;
+    static boolean[] visited;
 
     static void choose(int currentNum, int num) {
         if (currentNum == num) {
@@ -20,9 +21,13 @@ public class Main {
         }
 
         for (int i = 0; i < n; i++) {
-            list.add(i);
-            choose(currentNum + 1, num);
-            list.remove(list.size() - 1);
+            if (!visited[i]) {
+                visited[i] = true;
+                list.add(i);
+                choose(currentNum + 1, num);
+                visited[i] = false;
+                list.remove(list.size() - 1);
+            }
         }
     }
 
@@ -51,6 +56,7 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
+            visited = new boolean[n];
             pairs[i] = new Pair(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
