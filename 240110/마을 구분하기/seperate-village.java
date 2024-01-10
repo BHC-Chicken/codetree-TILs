@@ -1,8 +1,10 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,7 +12,7 @@ public class Main {
     static int village;
     static int[][] arr;
     static boolean[][] visited;
-    static ArrayList<Integer> list = new ArrayList<>();
+    static HashMap<Integer, Integer> map = new HashMap<>();
 
     static boolean inRange(int x, int y) {
         return x >= 0 && x < n && y >= 0 && y < n;
@@ -34,7 +36,7 @@ public class Main {
 
             if (canGo(newX, newY)) {
                 visited[newX][newY] = true;
-                list.set(num, list.get(num) + 1);
+                map.put(num, map.getOrDefault(num, 1) + 1);
                 DFS(newX, newY, num);
             }
         }
@@ -67,21 +69,21 @@ public class Main {
                     }
                     visited[i][j] = true;
                     village++;
-                    list.add(1);
+                    map.put(listCount, 1);
                     DFS(i, j, listCount);
                     listCount++;
                 }
             }
         }
 
-        Collections.sort(list);
+        List<Map.Entry<Integer, Integer>> list = new LinkedList<>(map.entrySet());
+        list.sort(Map.Entry.comparingByValue());
 
         StringBuilder sb = new StringBuilder();
-
         sb.append(village).append("\n");
 
-        for (int i : list) {
-            sb.append(i).append("\n");
+        for (Map.Entry<Integer, Integer> value : list) {
+            sb.append(value.getValue()).append("\n");
         }
 
         System.out.println(sb);
