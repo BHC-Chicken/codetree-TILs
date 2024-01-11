@@ -26,7 +26,7 @@ public class Main {
         int lastEnd = 0;
         for (int i = 0; i < n; i++) {
             // 현재 선분의 시작점이 이전 선분의 끝점보다 크거나 같으면 이 선분을 선택
-            if (pairs[i].x1 >= lastEnd) {
+            if (pairs[i].x1 > lastEnd) {
                 answer++;
                 lastEnd = pairs[i].x2;
             }
@@ -47,6 +47,11 @@ class Pair implements Comparable<Pair> {
 
     @Override
     public int compareTo(Pair o) {
-        return this.x2 - o.x2;  // 끝점(x2)을 기준으로 오름차순 정렬
+        // 끝점이 같을 경우 시작점이 큰 순으로 정렬
+        if (this.x2 == o.x2) {
+            return o.x1 - this.x1;
+        } else {
+            return this.x2 - o.x2;  // 끝점을 기준으로 오름차순 정렬
+        }
     }
 }
