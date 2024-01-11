@@ -57,7 +57,13 @@ public class Main {
             }
         }
 
-        for (int i = 0; i <= maxHeight; i++) {
+        if (maxHeight == 1) {
+            System.out.println(1 + " " + 0);
+
+            return;
+        }
+
+        for (int i = 1; i <= maxHeight; i++) {
             visited = new boolean[n][m];
             int temp = 0;
 
@@ -81,6 +87,6 @@ public class Main {
             }
         }
 
-        System.out.println(result + " " + result2);
+        System.out.println(result2 + " " + result);
     }
 }
