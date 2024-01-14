@@ -57,7 +57,7 @@ public class Main {
                         if (r > newX) {
                             r = newX;
                             c = newY;
-                        } else if (c > newY) {
+                        } else if (r == newX && c > newY) {
                             c = newY;
                         }
                     }
