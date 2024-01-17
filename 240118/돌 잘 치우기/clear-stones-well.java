@@ -102,6 +102,11 @@ public class Main {
             }
         }
 
+        if (stone == 0) {
+            System.out.println((arrSize * arrSize) - stoneList.size());
+            return;
+        }
+
         startPoint = new Pair[stone];
         one = stoneList.size();
         startPointVisited = new boolean[one];
