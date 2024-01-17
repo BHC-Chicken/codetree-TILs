@@ -41,7 +41,7 @@ public class Main {
         temp = 0;
         if (num == stone) {
             visited = new boolean[arrSize][arrSize];
-            for (int i = 0; i < stone; i++) {
+            for (int i = 0; i < startAmount; i++) {
                 queue.add(startPoint[i]);
                 BFS();
             }
