@@ -107,11 +107,11 @@ public class Main {
             return;
         }
 
-        startPoint = new Pair[stone];
+        startPoint = new Pair[startAmount];
         one = stoneList.size();
         startPointVisited = new boolean[one];
 
-        for (int i = 0; i < stone; i++) {
+        for (int i = 0; i < startAmount; i++) {
             st = new StringTokenizer(br.readLine());
 
             int x = Integer.parseInt(st.nextToken()) - 1;
