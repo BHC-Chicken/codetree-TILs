@@ -69,6 +69,12 @@ public class Main {
         r2 = Integer.parseInt(st.nextToken()) - 1;
         c2 = Integer.parseInt(st.nextToken()) - 1;
 
+           if (r1 == r2 && c1 == c2) {
+            System.out.println(1);
+            
+            return;
+        }
+
         score = new int[n][n];
         visited = new boolean[n][n];
 
