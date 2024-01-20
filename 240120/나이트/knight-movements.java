@@ -70,7 +70,7 @@ public class Main {
         c2 = Integer.parseInt(st.nextToken()) - 1;
 
            if (r1 == r2 && c1 == c2) {
-            System.out.println(1);
+            System.out.println(0);
             
             return;
         }
