@@ -7,7 +7,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[num + 1];
+        int[] arr = new int[1001];
 
         arr[0] = 0;
         arr[1] = 1;
