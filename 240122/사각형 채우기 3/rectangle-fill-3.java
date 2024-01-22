@@ -7,7 +7,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine());
 
-        int[] arr = new int[1001];
+        long[] arr = new long[1001];
 
         arr[0] = 0;
         arr[1] = 2;
@@ -15,7 +15,7 @@ public class Main {
         arr[3] = 22;
 
         for (int i = 4; i <= num; i++) {
-            arr[i] = ((arr[i - 1] % 1000000007) * 2 + (arr[i - 2] % 1000000007) * 4) % 1000000007;
+            arr[i] = (arr[i - 1] % 1000000007 * 2 + arr[i - 2] % 1000000007 * 4) % 1000000007;
         }
 
         System.out.println(arr[num]);
