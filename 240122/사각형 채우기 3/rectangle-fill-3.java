@@ -7,17 +7,18 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int num = Integer.parseInt(br.readLine());
 
-        long[] arr = new long[1001];
+        long[] dp = new long[1001];
 
-        arr[0] = 0;
-        arr[1] = 2;
-        arr[2] = 7;
-        arr[3] = 22;
+        dp[0] = 1;
+        dp[1] = 2;
 
-        for (int i = 4; i <= num; i++) {
-            arr[i] = (arr[i - 1] * 3 + arr[i - 2] - arr[i - 3]) % 1000000007;
+        for(int i = 2; i <= num; i++) {
+            dp[i] = (dp[i - 1] * 2 + dp[i - 2] * 3) % 1000000007;
+            for(int j = i - 3; j >= 0; j--) {
+                dp[i] = (dp[i] + (dp[j] * 2) % 1000000007) % 1000000007;
+            }
         }
 
-        System.out.println(arr[num]);
+        System.out.println(dp[num]);
     }
 }
