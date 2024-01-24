@@ -18,6 +18,10 @@ public class Main {
         for (int i = 1; i < n; i++) {
             dp[i][i] = dp[i - 1][i - 1] + arr[i][i];
         }
+
+        for (int i = 1; i < n; i++) {
+            dp[0][i] = dp[0][i - 1] + arr[0][i];
+        }
     }
 
     public static void main(String[] args) throws IOException {
@@ -36,8 +40,8 @@ public class Main {
 
         init();
 
-        for (int i = 2; i < n; i++) {
-            for (int j = 1; j < i; j++) {
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < n; j++) {
                 dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - 1]) + arr[i][j];
             }
         }
