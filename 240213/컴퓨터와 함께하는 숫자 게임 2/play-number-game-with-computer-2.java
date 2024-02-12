@@ -4,28 +4,28 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
-    static int m;
-    static int a;
-    static int b;
+    static long m;
+    static long a;
+    static long b;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        m = Integer.parseInt(br.readLine());
+        m = Long.parseLong(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        a = Integer.parseInt(st.nextToken());
-        b = Integer.parseInt(st.nextToken());
+        a = Long.parseLong(st.nextToken());
+        b = Long.parseLong(st.nextToken());
 
-        int max = Integer.MIN_VALUE;
-        int min = Integer.MAX_VALUE;
+        long max = Long.MIN_VALUE;
+        long min = Long.MAX_VALUE;
 
-        for (int i = a; i <= b; i++) {
-            int left = 1;
-            int right = m;
-            int count = 0;
+        for (long i = a; i <= b; i++) {
+            long left = 1;
+            long right = m;
+            long count = 0;
 
             while (left <= right) {
-                int mid = (left + right) / 2;
+                long mid = (left + right) / 2;
                 count++;
 
                 if (mid == i) {
