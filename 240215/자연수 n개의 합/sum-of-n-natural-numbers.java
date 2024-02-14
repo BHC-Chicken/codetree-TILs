@@ -7,7 +7,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         long num = Long.parseLong(br.readLine());
         long left = 1;
-        long right = (long) Math.floor(Math.sqrt((8.0 * num + 1) - 1) / 2);
+        long right = 2000000000;
         long result = -1;
 
         while (left <= right) {
