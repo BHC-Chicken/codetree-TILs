@@ -3,12 +3,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Main {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         long num = Long.parseLong(br.readLine());
         long left = 1;
-        long right = (long) Math.ceil(num);
+        long right = (long) Math.floor(Math.sqrt((8.0 * num + 1) - 1) / 2);
         long result = -1;
 
         while (left <= right) {
