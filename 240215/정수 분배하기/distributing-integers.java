@@ -10,13 +10,9 @@ public class Main {
 
     static boolean isPossible(int maxDiv) {
         int part = 0;
+        
         for (int i = 0; i < n; i++) {
-            int num = arr[i];
-
-            while (num >= maxDiv) {
-                num -= maxDiv;
-                part++;
-            }
+            part += arr[i] / maxDiv;
         }
 
         return part >= m;
