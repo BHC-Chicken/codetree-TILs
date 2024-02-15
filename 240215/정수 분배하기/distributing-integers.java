@@ -33,7 +33,7 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
 
         int minValue = Integer.MAX_VALUE;
-        int result = Integer.MIN_VALUE;
+        int result = 0;
 
         arr = new int[n];
 
