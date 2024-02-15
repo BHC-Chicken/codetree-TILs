@@ -11,9 +11,6 @@ public class Main {
     static boolean isPossible(int maxDiv) {
         int part = 0;
         for (int i = 0; i < n; i++) {
-            if (arr[i] < maxDiv) {
-                return false;
-            }
             int num = arr[i];
 
             while (num >= maxDiv) {
@@ -32,19 +29,16 @@ public class Main {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        int minValue = Integer.MAX_VALUE;
         int result = 0;
 
         arr = new int[n];
 
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(br.readLine());
-
-            minValue = Math.min(minValue, arr[i]);
         }
 
         int left = 1;
-        int right = minValue;
+        int right = 100000;
 
         while (left <= right) {
             int mid = (left + right) / 2;
