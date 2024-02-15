@@ -14,7 +14,7 @@ public class Main {
 
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-        int[] arr = new int[m];
+        long[] arr = new long[m];
 
         for (int i = 0; i < m; i++) {
             arr[i] = Integer.parseInt(br.readLine());
@@ -22,13 +22,13 @@ public class Main {
 
         Arrays.sort(arr);
 
-        int left = 1;
-        int right = n * arr[m - 1];
-        int result = 0;
+        long left = 1;
+        long right = n * arr[m - 1];
+        long result = 0;
 
         while (left <= right) {
-            int mid = (left + right) / 2;
-            int sum = 0;
+            long mid = (left + right) / 2;
+            long sum = 0;
 
             for (int i = 0; i < m; i++) {
                 sum += mid / arr[i];
