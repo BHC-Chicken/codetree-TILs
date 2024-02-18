@@ -18,14 +18,13 @@ public class Main {
         int sum = 0;
         int result = Integer.MIN_VALUE;
 
-        for (int i : arr) {
-            sum += i;
+        for (int i = 0; i < n; i++) {
+            sum += arr[i];
             result = Math.max(result, sum);
 
-            if (sum + i < 0) {
+            if (sum < 0) {
                 sum = 0;
             }
-
         }
 
         System.out.println(result);
