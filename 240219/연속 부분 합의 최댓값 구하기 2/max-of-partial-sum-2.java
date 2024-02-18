@@ -16,14 +16,14 @@ public class Main {
         }
 
         int sum = 0;
-        int result = 0;
+        int result = Integer.MIN_VALUE;
 
         for (int i : arr) {
+            sum += i;
+            result = Math.max(result, sum);
+
             if (sum + i < 0) {
                 sum = 0;
-            } else {
-                sum += i;
-                result = Math.max(result, sum);
             }
 
         }
