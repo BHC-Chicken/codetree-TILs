@@ -16,16 +16,18 @@ public class Main {
         }
 
         int sum = 0;
+        int result = 0;
 
         for (int i : arr) {
-            if (sum < 0) {
+            if (sum + i < 0) {
                 sum = 0;
+            } else {
+                sum += i;
+                result = Math.max(result, sum);
             }
-
-            sum += i;
 
         }
 
-        System.out.println(sum);
+        System.out.println(result);
     }
 }
