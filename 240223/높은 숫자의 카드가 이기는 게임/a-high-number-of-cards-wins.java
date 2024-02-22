@@ -34,9 +34,18 @@ public class Main {
 
         Arrays.sort(arr2);
 
-        for (int i = 0; i < n; i++) {
-            if (arr1[i] < arr2[i]) {
+        index1 = 0;
+        index2 = 0;
+
+        for (int i = 0; i < n * 2; i++) {
+            if (arr1[index1] < arr2[index2]) {
                 score++;
+                index1++;
+            }
+            index2++;
+
+            if (index2 == (n)) {
+                break;
             }
         }
 
