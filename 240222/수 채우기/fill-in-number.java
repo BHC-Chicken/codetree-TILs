@@ -9,6 +9,12 @@ public class Main {
         int num = Integer.parseInt(br.readLine());
         int result = 0;
 
+        if (num / 2 == 0 || num / 5 == 0) {
+            System.out.println(-1);
+
+            return;
+        }
+
         if (num % 2 == 0) {
             result += num / 5;
             num = num - (num / 5 * 5);
