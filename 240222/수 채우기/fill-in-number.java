@@ -15,19 +15,16 @@ public class Main {
             return;
         }
 
-        if (num % 2 == 0) {
-            result += num / 5;
-            num = num - (num / 5 * 5);
-            result += num / 2;
-            num = num - (num / 2 * 2);
-        } else {
-            result += num / 5;
+        result += num / 5;
+        num = num - (num / 5 * 5);
+
+        if (num % 2 != 0) {
             result--;
-            num = num - (num / 5 * 5);
             num += 5;
-            result += num / 2;
-            num = num - (num / 2 * 2);
         }
+
+        result += num / 2;
+        num = num - (num / 2 * 2);
 
         if (num == 0) {
             System.out.println(result);
