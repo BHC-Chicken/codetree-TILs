@@ -47,12 +47,12 @@ public class Main {
         for (int i = n; i >= 1 ; i--) {
 
             while (bombIndex >= 0 && bombs[bombIndex].time >= i) {
-                priorityQueue.add(-bombs[bombIndex].score);
+                priorityQueue.add(bombs[bombIndex].score);
                 bombIndex--;
             }
 
             if (!priorityQueue.isEmpty()) {
-                answer += -priorityQueue.poll();
+                answer += priorityQueue.poll();
             }
         }
 
