@@ -1,21 +1,14 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
-class Pair implements Comparable<Pair> {
-    int x;
-    int y;
+class Stone {
+    int start, end;
 
-    public Pair(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public int compareTo(Pair o) {
-        return this.x - o.x;
+    Stone(int start, int end) {
+        this.start = start;
+        this.end = end;
     }
 }
 
@@ -27,36 +20,29 @@ public class Main {
         int c = Integer.parseInt(st.nextToken());
         int n = Integer.parseInt(st.nextToken());
 
-        int[] red = new int[c];
-        Pair[] black = new Pair[n];
-
+        TreeSet<Integer> redSet = new TreeSet<>();
         for (int i = 0; i < c; i++) {
-            red[i] = Integer.parseInt(br.readLine());
+            redSet.add(Integer.parseInt(br.readLine()));
         }
 
+        Stone[] blackStone = new Stone[n];
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
 
-            black[i] = new Pair(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            blackStone[i] = new Stone(start, end);
         }
 
-        Arrays.sort(red);
-        Arrays.sort(black);
+        Arrays.sort(blackStone, (o1, o2) -> o1.start - o2.start);
 
-        int redIndex = 0;
-        int blackIndex = 0;
         int count = 0;
+        for (int i = 0; i < n; i++) {
+            Integer red = redSet.ceiling(blackStone[i].start);
 
-        while (redIndex < c && blackIndex < n) {
-            if (red[redIndex] >= black[blackIndex].x && red[redIndex] <= black[blackIndex].y) {
+            if (red != null && red <= blackStone[i].end) {
                 count++;
-                redIndex++;
-                blackIndex++;
-            } else if (red[redIndex] < black[blackIndex].x) {
-                redIndex++;
-            }
-            else {
-                blackIndex++;
+                redSet.remove(red);
             }
         }
 
