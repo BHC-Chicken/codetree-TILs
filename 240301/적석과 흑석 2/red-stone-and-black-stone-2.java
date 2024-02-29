@@ -48,11 +48,14 @@ public class Main {
         int count = 0;
 
         while (redIndex < c && blackIndex < n) {
-            if (red[redIndex] <= black[blackIndex].y) {
+            if (red[redIndex] >= black[blackIndex].x && red[redIndex] <= black[blackIndex].y) {
                 count++;
                 redIndex++;
                 blackIndex++;
-            } else {
+            } else if (red[redIndex] < black[blackIndex].x) {
+                redIndex++;
+            }
+            else {
                 blackIndex++;
             }
         }
