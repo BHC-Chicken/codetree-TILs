@@ -44,7 +44,7 @@ public class Main {
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
         int bombIndex = n - 1;
 
-        for (int i = n - 1; i >= 1 ; i--) {
+        for (int i = n; i >= 1 ; i--) {
 
             while (bombIndex >= 0 && bombs[bombIndex].time >= i) {
                 priorityQueue.add(-bombs[bombIndex].score);
