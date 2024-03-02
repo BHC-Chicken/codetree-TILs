@@ -16,7 +16,7 @@ class Stone implements Comparable<Stone> {
 
     @Override
     public int compareTo(Stone o) {
-        return this.start - o.start;
+        return this.end - o.end;
     }
 }
 
