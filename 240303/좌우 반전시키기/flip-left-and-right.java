@@ -16,6 +16,10 @@ public class Main {
                 count++;
                 i++;
 
+                if (i >= n) {
+                    break;
+                }
+
                 arr[i] = arr[i] == '0' ? '1' : '0';
             }
         }
