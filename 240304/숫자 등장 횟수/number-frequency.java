@@ -25,11 +25,7 @@ public class Main {
         for (int i = 0; i < m; i++) {
             int temp = Integer.parseInt(st.nextToken());
 
-            if (map.containsKey(temp)) {
-                sb.append(map.get(temp)).append(" ");
-            } else {
-                sb.append(0).append(" ");
-            }
+            sb.append(map.getOrDefault(temp, 0)).append(" ");
         }
 
         System.out.println(sb);
