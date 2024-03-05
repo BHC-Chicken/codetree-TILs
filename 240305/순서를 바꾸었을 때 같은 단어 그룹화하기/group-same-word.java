@@ -18,12 +18,9 @@ public class Main {
         for (int i = 0; i < n; i++) {
             String word = br.readLine();
             ArrayList<Integer> list = new ArrayList<>();
+            
             for (int j = 0; j < word.length(); j++) {
-                if (word.charAt(j) >= 'a' && word.charAt(j) <= 'z') {
-                    list.add(word.charAt(j) - 'a');
-                } else {
-                    list.add(word.charAt(j) - 'A');
-                }
+                list.add(word.charAt(j) - 'A');
             }
 
             Collections.sort(list);
