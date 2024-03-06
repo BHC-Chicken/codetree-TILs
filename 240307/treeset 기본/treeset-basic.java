@@ -30,7 +30,7 @@ public class Main {
                     }
                     break;
                 case "lower_bound":
-                    Integer temp1 = treeSet.floor(Integer.parseInt(st.nextToken()));
+                    Integer temp1 = treeSet.ceiling(Integer.parseInt(st.nextToken()));
 
                     if (temp1 != null) {
                         sb.append(temp1).append("\n");
@@ -39,9 +39,9 @@ public class Main {
                     }
                     break;
                 case "upper_bound":
-                    Integer temp2 = treeSet.ceiling(Integer.parseInt(st.nextToken()));
+                    Integer temp2 = treeSet.higher(Integer.parseInt(st.nextToken()));
 
-                    if (temp2!= null) {
+                    if (temp2 != null) {
                         sb.append(temp2).append("\n");
                     } else {
                         sb.append("None").append("\n");
@@ -56,10 +56,10 @@ public class Main {
                     break;
                 case "smallest":
                     if (treeSet.isEmpty()) {
-                    sb.append("None").append("\n");
-                } else {
-                    sb.append(treeSet.first()).append("\n");
-                }
+                        sb.append("None").append("\n");
+                    } else {
+                        sb.append(treeSet.first()).append("\n");
+                    }
             }
         }
 
