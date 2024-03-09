@@ -16,36 +16,24 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
 
+        for (int i = 1; i <= m; i++) {
+            treeSet.add(i);
+        }
+
         while (st.hasMoreTokens()) {
             int num = Integer.parseInt(st.nextToken());
 
-            if (!treeSet.contains(num)) {
-                treeSet.add(num);
-                result++;
-
-                continue;
-            }
-
-            Integer ceiling = treeSet.ceiling(num);
-
-            if (ceiling == null) {
-                treeSet.add(num);
+            if (treeSet.contains(num)) {
+                treeSet.remove(num);
                 result++;
             } else {
-                if (ceiling == num) {
-                    if (num - 1 <= 0) {
-                        break;
-                    } else {
-                        treeSet.add(num - 1);
-                        result++;
-                    }
+                Integer temp = treeSet.floor(num);
+
+                if (temp == null) {
+                    break;
                 } else {
-                    if (ceiling - 1 <= 0) {
-                        break;
-                    } else {
-                        treeSet.add(ceiling - 1);
-                        result++;
-                    }
+                    treeSet.remove(temp);
+                    result++;
                 }
             }
         }
