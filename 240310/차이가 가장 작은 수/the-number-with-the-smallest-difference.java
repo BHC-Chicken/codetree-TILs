@@ -43,6 +43,10 @@ public class Main {
             }
         }
 
-        System.out.println(result);
+         if (result == Integer.MAX_VALUE) {
+            System.out.println(-1);
+        } else {
+            System.out.println(result);
+        }
     }
 }
