@@ -12,38 +12,28 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
+        int[] arr = new int[n];
         int result = Integer.MAX_VALUE;
 
         for (int i = 0; i < n; i++) {
-            treeSet.add(Integer.parseInt(br.readLine()));
+            int num = Integer.parseInt(br.readLine());
+            treeSet.add(num);
+            arr[i] = num;
         }
 
-        Integer left = treeSet.first();
-        Integer right = treeSet.higher(m);
+        for (int i = 0; i < n; i++) {
+            int x = arr[i];
 
-        if (right == null) {
-            right = treeSet.last();
-        }
+            if (treeSet.ceiling(m + x) != null) {
+                result = Math.min(result, treeSet.ceiling(m + x) - x);
+            }
 
-        while (left <= right) {
-            if (right - left >= m) {
-                result = Math.min(result, right - left);
-
-                left = treeSet.higher(left);
-
-                if (left == null) {
-                    break;
-                }
-            } else if (right - left < m) {
-                right = treeSet.higher(right);
-
-                if (right == null) {
-                    break;
-                }
+            if (treeSet.floor(x - m) != null) {
+                result = Math.min(result, x - treeSet.floor(x - m));
             }
         }
 
-         if (result == Integer.MAX_VALUE) {
+        if (result == Integer.MAX_VALUE) {
             System.out.println(-1);
         } else {
             System.out.println(result);
