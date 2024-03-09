@@ -13,7 +13,7 @@ public class Main {
 
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        int result = -1;
+        int result = Integer.MAX_VALUE;
 
         for (int i = 0; i < n; i++) {
             treeSet.add(Integer.parseInt(br.readLine()));
@@ -26,13 +26,17 @@ public class Main {
 
             for (int j = list.size() - 1; j >= 0; j--) {
                 if (list.get(j) - temp >= m) {
-                    result = list.get(j) - temp;
+                    result = Math.min(result, list.get(j) - temp);
                 } else {
                     break;
                 }
             }
         }
 
-        System.out.println(result);
+        if (result == Integer.MAX_VALUE) {
+            System.out.println(-1);
+        } else {
+            System.out.println(result);
+        }
     }
 }
