@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
@@ -19,24 +18,31 @@ public class Main {
             treeSet.add(Integer.parseInt(br.readLine()));
         }
 
-        ArrayList<Integer> list = new ArrayList<>(treeSet);
+        Integer left = treeSet.first();
+        Integer right = treeSet.higher(m);
 
-        for (int i = 0; i < list.size(); i++) {
-            int temp = list.get(i);
+        if (right == null) {
+            right = treeSet.last();
+        }
 
-            for (int j = list.size() - 1; j >= 0; j--) {
-                if (list.get(j) - temp >= m) {
-                    result = Math.min(result, list.get(j) - temp);
-                } else {
+        while (left <= right) {
+            if (right - left >= m) {
+                result = Math.min(result, right - left);
+
+                left = treeSet.higher(left);
+
+                if (left == null) {
+                    break;
+                }
+            } else if (right - left < m) {
+                right = treeSet.higher(right);
+
+                if (right == null) {
                     break;
                 }
             }
         }
 
-        if (result == Integer.MAX_VALUE) {
-            System.out.println(-1);
-        } else {
-            System.out.println(result);
-        }
+        System.out.println(result);
     }
 }
