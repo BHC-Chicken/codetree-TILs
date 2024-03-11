@@ -14,51 +14,54 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i <= n; i++) {
-            treeSet.add(i);
-        }
-
         st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < m; i++) {
             int remove = Integer.parseInt(st.nextToken());
+            treeSet.add(remove);
             int result = 0;
-            treeSet.remove(remove);
 
             Integer high = treeSet.higher(remove);
             Integer lower = treeSet.lower(remove);
 
-            while (high != null) {
-                int temp = high + 1;
-                int length = 1;
+            if (high == null) {
+                result = Math.max(result, n - remove);
+            } else {
+                while (true) {
+                    Integer temp = treeSet.higher(high);
 
-                if (treeSet.contains(temp)) {
-                    while (treeSet.contains(temp)) {
-                        temp++;
-                        length++;
+                    if (temp == null) {
+
+                        result = Math.max(result, n - high);
+                        break;
                     }
-                    result = Math.max(result, length);
+                    result = Math.max(result, (temp - 1) - high);
 
+                    high = temp;
                 }
-                high = treeSet.higher(temp);
             }
 
-            while (lower != null) {
-                int temp = lower - 1;
-                int length = 1;
+            if (lower == null) {
+                result = Math.max(result, Math.abs(-remove));
+            } else {
+                while (true) {
+                    Integer temp = treeSet.lower(lower);
 
-                if (treeSet.contains(temp)) {
-                    while (treeSet.contains(temp)) {
-                        temp--;
-                        length++;
+                    if (temp == null) {
+                        result = Math.max(result, Math.abs(-lower));
+
+                        break;
                     }
-                    result = Math.max(result, length);
 
+                    result = Math.max(result, remove - (temp + 1));
+
+                    lower = temp;
                 }
-                lower = treeSet.lower(temp);
             }
 
-            System.out.println(result);
+            sb.append(result).append("\n");
         }
+
+        System.out.println(sb);
     }
 }
