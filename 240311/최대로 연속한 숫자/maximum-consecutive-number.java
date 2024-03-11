@@ -58,9 +58,7 @@ public class Main {
                 lower = treeSet.lower(temp);
             }
 
-            sb.append(result).append("\n");
+            System.out.println(result);
         }
-
-        System.out.println(sb);
     }
 }
