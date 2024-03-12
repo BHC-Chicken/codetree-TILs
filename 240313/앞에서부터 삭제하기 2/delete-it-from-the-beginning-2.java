@@ -31,14 +31,9 @@ public class Main {
         }
 
         result = prevResult / size;
-        list.add(0, temp);
 
         for (int i = 2; i < n - 2; i++) {
-            ArrayList<Integer> garbage = new ArrayList<>(list);
-
-            for (int j = 0; j < i; j++) {
-                list.remove(0);
-            }
+            list.remove(0);
 
             queue = new PriorityQueue<>(list);
             temp = queue.poll();
@@ -46,9 +41,7 @@ public class Main {
 
             prevResult -= temp;
 
-            result = Math.max(result, prevResult/size);
-
-            list = new ArrayList<>(garbage);
+            result = Math.max(result, prevResult / size);
         }
 
         System.out.printf("%.2f%n", result);
