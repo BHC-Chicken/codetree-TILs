@@ -19,7 +19,7 @@ class Pair implements Comparable<Pair> {
             return this.y - o.y;
         }
 
-        return this.x - o.y;
+        return this.x - o.x;
     }
 }
 
