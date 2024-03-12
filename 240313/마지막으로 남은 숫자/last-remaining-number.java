@@ -28,14 +28,12 @@ public class Main {
             }
 
             queue.add(sum);
-
-            if (queue.isEmpty()) {
-                System.out.println(-1);
-
-                return;
-            }
         }
 
-        System.out.println(queue.poll());
+        if (queue.isEmpty()) {
+            System.out.println(-1);
+        } else {
+            System.out.println(queue.poll());
+        }
     }
 }
