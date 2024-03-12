@@ -18,17 +18,18 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < n; i++) {
-            list.add(Integer.parseInt(st.nextToken()));
+            int num = Integer.parseInt(st.nextToken());
+            list.add(num);
+
+            prevResult += num;
         }
 
-        list.remove(0);
+        prevResult -= list.remove(0);
         queue.addAll(list);
+
         int temp = queue.poll();
         int size = queue.size();
-
-        for (int i = 0; i < size; i++) {
-            prevResult += queue.poll();
-        }
+        prevResult -= temp;
 
         result = prevResult / size;
 
