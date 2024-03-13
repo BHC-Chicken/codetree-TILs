@@ -15,24 +15,20 @@ public class Main {
         StringTokenizer st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < n; i++) {
-            pq.add(-Integer.parseInt(st.nextToken()));
-
-            if (pq.size() > 3) {
-                pq.poll();
-            }
+            pq.add(Integer.parseInt(st.nextToken()));
 
             if (pq.size() < 3) {
                 sb.append(-1).append("\n");
             } else {
-                int a = -pq.poll();
-                int b = -pq.poll();
-                int c = -pq.poll();
+                int a = pq.poll();
+                int b = pq.poll();
+                int c = pq.poll();
 
                 sb.append(a * b * c).append("\n");
 
-                pq.add(-a);
-                pq.add(-b);
-                pq.add(-c);
+                pq.add(a);
+                pq.add(b);
+                pq.add(c);
             }
         }
 
