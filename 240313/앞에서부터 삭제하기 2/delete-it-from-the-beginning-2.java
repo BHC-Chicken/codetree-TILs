@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -9,42 +8,29 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         PriorityQueue<Integer> queue = new PriorityQueue<>();
-        ArrayList<Integer> list = new ArrayList<>();
+
         int n = Integer.parseInt(br.readLine());
+        int[] arr = new int[n];
+        double sum = 0;
         double result = 0;
-        double prevResult = 0;
-        double avg = 0;
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         for (int i = 0; i < n; i++) {
-            int num = Integer.parseInt(st.nextToken());
-            list.add(num);
-
-            prevResult += num;
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        prevResult -= list.remove(0);
-        queue.addAll(list);
+        queue.add(arr[n - 1]);
+        sum += arr[n - 1];
 
-        int temp = queue.poll();
-        int size = queue.size();
-        prevResult -= temp;
+        for (int i = n - 2; i >= 1; i--) {
+            queue.add(arr[i]);
+            sum += arr[i];
 
-        result = prevResult / size;
+            double avg = (sum - queue.peek()) / (n - i - 1);
 
-        for (int i = 2; i < n - 2; i++) {
-            list.remove(0);
-
-            queue = new PriorityQueue<>(list);
-            temp = queue.poll();
-            size = queue.size();
-
-            prevResult -= temp;
-
-            result = Math.max(result, prevResult / size);
+            result = Math.max(avg, result);
         }
 
-        System.out.printf("%.2f%n", result);
+        System.out.printf("%.2f", result);
     }
 }
