@@ -14,7 +14,6 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int k = Integer.parseInt(st.nextToken());
         int b = Integer.parseInt(st.nextToken());
-        int result = Integer.MAX_VALUE;
         int count = Integer.MAX_VALUE;
 
         sum = new int[n + 1];
@@ -29,27 +28,18 @@ public class Main {
 
         for (int i = 1; i <= n; i++) {
             if (arr[i] == 1) {
-                sum[i] = sum[i - 1] + i;
+                sum[i] = sum[i - 1] + 1;
             } else {
                 sum[i] = sum[i - 1];
             }
         }
 
-
         for (int i = k; i <= n; i++) {
             int num = sum[i] - sum[i - k];
 
-            if (result > num) {
-                result = num;
-                int temp = 0;
+            if (count >= num) {
 
-                for (int j = i - k + 1; j <= i; j++) {
-                    if (arr[j] == 1) {
-                        temp++;
-                    }
-                }
-
-                count = Math.min(count, temp);
+                count = num;
             }
         }
 
