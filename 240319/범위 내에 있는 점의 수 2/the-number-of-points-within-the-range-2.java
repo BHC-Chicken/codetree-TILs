@@ -30,6 +30,10 @@ public class Main {
             arr[num] = 1;
         }
 
+        if (arr[0] == 1) {
+            sum[0] = 1;
+        }
+
         for (int i = 1; i <= max; i++) {
             if (arr[i] == 1) {
                 sum[i] = sum[i - 1] + 1;
