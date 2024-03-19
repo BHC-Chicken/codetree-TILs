@@ -45,7 +45,7 @@ public class Main {
 
         triples = new Triple[n + 1][m + 1];
 
-        for (int i = 0; i <= n; i++) {
+        for (int i = 0; i <= m; i++) {
             triples[0][i] = new Triple(0, 0, 0);
         }
 
