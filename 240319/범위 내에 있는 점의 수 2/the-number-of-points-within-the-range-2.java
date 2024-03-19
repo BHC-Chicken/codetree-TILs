@@ -46,6 +46,8 @@ public class Main {
 
             if (s > max) {
                 sb.append(0).append("\n");
+            } else if (s == 0) {
+                sb.append(sum[e]).append("\n");
             } else {
                 sb.append(sum[e] - sum[s - 1]).append("\n");
             }
