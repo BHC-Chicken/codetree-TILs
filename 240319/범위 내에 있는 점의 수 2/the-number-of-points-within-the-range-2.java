@@ -16,8 +16,8 @@ public class Main {
         int q = Integer.parseInt(st.nextToken());
         int max = Integer.MIN_VALUE;
 
-        sum = new int[100001];
-        arr = new int[100001];
+        sum = new int[1000001];
+        arr = new int[1000001];
 
         sum[0] = 0;
         arr[0] = 0;
