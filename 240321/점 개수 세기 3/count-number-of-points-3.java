@@ -28,7 +28,7 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int q = Integer.parseInt(st.nextToken());
 
-        Pair[] pairs = new Pair[n + 1];
+        Pair[] pairs = new Pair[100001];
 
         st = new StringTokenizer(br.readLine());
 
