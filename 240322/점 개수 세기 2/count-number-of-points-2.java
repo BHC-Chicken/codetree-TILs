@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
@@ -21,24 +20,23 @@ class Pair implements Comparable<Pair> {
 }
 
 public class Main {
+    static Pair[] pairs1;
+    static Pair[] pairs2;
+    static TreeSet<Integer> treeSetX = new TreeSet<>();
+    static TreeSet<Integer> treeSetY = new TreeSet<>();
+    static TreeSet<Pair> pairTreeSet = new TreeSet<>();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-        TreeSet<Integer> treeSetX = new TreeSet<>();
-        TreeSet<Integer> treeSetY = new TreeSet<>();
-        TreeSet<Pair> pairTreeSet = new TreeSet<>();
-
-        HashMap<Integer, Integer> mapX = new HashMap<>();
-        HashMap<Integer, Integer> mapY = new HashMap<>();
 
         StringBuilder sb = new StringBuilder();
 
         int n = Integer.parseInt(st.nextToken());
         int q = Integer.parseInt(st.nextToken());
 
-        Pair[] pairs1 = new Pair[q + 1];
-        Pair[] pairs2 = new Pair[q + 1];
+        pairs1 = new Pair[n + 1];
+        pairs2 = new Pair[n + 1];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -58,25 +56,34 @@ public class Main {
             pairs2[i] = new Pair(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
-        int index = 1;
-        for (Integer num : treeSetX) {
-            mapX.put(num, index);
-            index++;
-        }
-
-        index = 1;
-        for (Integer num : treeSetY) {
-            mapY.put(num, index);
-            index++;
-        }
-
         for (int i = 0; i < q; i++) {
             int count = 0;
-            int x1 = treeSetX.ceiling(pairs1[i].x);
-            int y1 = treeSetY.ceiling(pairs1[i].y);
 
-            int x2 = treeSetX.floor(pairs2[i].x);
-            int y2 = treeSetY.floor(pairs2[i].y);
+            int x1, x2, y1, y2;
+
+            if (treeSetX.ceiling(pairs1[i].x) != null) {
+                x1 = treeSetX.ceiling(pairs1[i].x);
+            } else {
+                x1 = treeSetX.first();
+            }
+
+            if (treeSetY.ceiling(pairs1[i].y) != null) {
+                y1 = treeSetY.ceiling(pairs1[i].y);
+            } else {
+                y1 = treeSetY.first();
+            }
+
+            if (treeSetX.floor(pairs2[i].x) != null) {
+                x2 = treeSetX.floor(pairs2[i].x);
+            } else {
+                x2 = treeSetX.last();
+            }
+
+            if (treeSetY.floor(pairs2[i].y) != null) {
+                y2 = treeSetY.floor(pairs2[i].y);
+            } else {
+                y2 = treeSetY.last();
+            }
 
             for (Pair pair : pairTreeSet) {
                 if (pair.x >= x1 && pair.x <= x2 && pair.y >= y1 && pair.y <= y2) {
