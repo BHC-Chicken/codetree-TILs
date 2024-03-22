@@ -26,7 +26,7 @@ public class Main {
 
     static int lowerBound(int i) {
         if (treeSet.ceiling(i) != null) {
-            return treeSet.ceiling(i);
+            return hashMap.get(treeSet.ceiling(i));
         }
 
         return treeSet.size() + 1;
@@ -34,7 +34,7 @@ public class Main {
 
     static int upperBound(int i) {
         if (treeSet.floor(i) != null) {
-            return treeSet.floor(i);
+            return hashMap.get(treeSet.floor(i));
         }
 
         return 0;
@@ -80,8 +80,8 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            int newX = hashMap.get(lowerBound(x));
-            int newY = hashMap.get(upperBound(y));
+            int newX = lowerBound(x);
+            int newY = upperBound(y);
             sb.append(prefix[newY] - prefix[newX - 1]).append("\n");
         }
 
