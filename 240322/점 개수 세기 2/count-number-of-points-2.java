@@ -1,10 +1,11 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.TreeSet;
 
-class Pair implements Comparable<Pair> {
+class Pair {
     int x;
     int y;
 
@@ -12,31 +13,60 @@ class Pair implements Comparable<Pair> {
         this.x = x;
         this.y = y;
     }
+}
 
-    @Override
-    public int compareTo(Pair o) {
-        return this.x - o.x;
+class Tuple {
+    int x1, x2, y1, y2;
+
+    public Tuple(int x1, int y1, int x2, int y2) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
     }
 }
 
 public class Main {
-    static Pair[] pairs1;
-    static Pair[] pairs2;
-    static TreeSet<Integer> treeSetX = new TreeSet<>();
-    static TreeSet<Integer> treeSetY = new TreeSet<>();
-    static TreeSet<Pair> pairTreeSet = new TreeSet<>();
+    static int n;
+    static int q;
+
+    static Pair[] points = new Pair[1001];
+    static Tuple[] query = new Tuple[100001];
+
+    static TreeSet<Integer> treeSet = new TreeSet<>();
+    static HashMap<Integer, Integer> hashMap = new HashMap<>();
+
+    static int[][] prefix;
+
+    static int getLowerBound(int x) {
+        if (treeSet.ceiling(x) != null) {
+            return hashMap.get(treeSet.ceiling(x));
+        }
+
+        return treeSet.size() + 1;
+    }
+
+    static int getUpperBound(int x) {
+        if (treeSet.floor(x) != null) {
+            return hashMap.get(treeSet.floor(x));
+        }
+
+        return 0;
+    }
+
+    static int getSum(int x1, int y1, int x2, int y2) {
+        return prefix[x2][y2] - prefix[x1 - 1][y2] - prefix[x2][y1 - 1] + prefix[x1 - 1][y1 - 1];
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
         StringBuilder sb = new StringBuilder();
 
-        int n = Integer.parseInt(st.nextToken());
-        int q = Integer.parseInt(st.nextToken());
+        n = Integer.parseInt(st.nextToken());
+        q = Integer.parseInt(st.nextToken());
 
-        pairs1 = new Pair[q + 1];
-        pairs2 = new Pair[q + 1];
+        prefix = new int[2 * n + 2][2 * n + 2];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
@@ -44,54 +74,59 @@ public class Main {
             int x = Integer.parseInt(st.nextToken());
             int y = Integer.parseInt(st.nextToken());
 
-            treeSetX.add(x);
-            treeSetY.add(y);
-            pairTreeSet.add(new Pair(x, y));
+            points[i] = new Pair(x, y);
+
+            treeSet.add(x);
+            treeSet.add(y);
         }
 
         for (int i = 0; i < q; i++) {
             st = new StringTokenizer(br.readLine());
 
-            pairs1[i] = new Pair(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
-            pairs2[i] = new Pair(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
+            int x1 = Integer.parseInt(st.nextToken());
+            int y1 = Integer.parseInt(st.nextToken());
+            int x2 = Integer.parseInt(st.nextToken());
+            int y2 = Integer.parseInt(st.nextToken());
+
+            query[i] = new Tuple(x1, y1, x2, y2);
+        }
+
+        int index = 1;
+
+        for (Integer num : treeSet) {
+            hashMap.put(num, index++);
+        }
+
+        for (int i = 0; i < n; i++) {
+            int x = points[i].x;
+            int y = points[i].y;
+
+            int newX = hashMap.get(x);
+            int newY = hashMap.get(y);
+
+            prefix[newX][newY]++;
+        }
+
+        for (int i = 1; i <= index; i++) {
+            for (int j = 1; j <= index; j++) {
+                prefix[i][j] += prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1];
+            }
         }
 
         for (int i = 0; i < q; i++) {
-            int count = 0;
+            int x1 = query[i].x1;
+            int y1 = query[i].y1;
+            int x2 = query[i].x2;
+            int y2 = query[i].y2;
 
-            int x1, x2, y1, y2;
+            int newX1 = getLowerBound(x1);
+            int newY1 = getLowerBound(y1);
+            int newX2 = getUpperBound(x2);
+            int newY2 = getUpperBound(y2);
 
-            if (treeSetX.ceiling(pairs1[i].x) != null) {
-                x1 = treeSetX.ceiling(pairs1[i].x);
-            } else {
-                x1 = treeSetX.first();
-            }
+            int sum = getSum(newX1, newY1, newX2, newY2);
 
-            if (treeSetY.ceiling(pairs1[i].y) != null) {
-                y1 = treeSetY.ceiling(pairs1[i].y);
-            } else {
-                y1 = treeSetY.first();
-            }
-
-            if (treeSetX.floor(pairs2[i].x) != null) {
-                x2 = treeSetX.floor(pairs2[i].x);
-            } else {
-                x2 = treeSetX.last();
-            }
-
-            if (treeSetY.floor(pairs2[i].y) != null) {
-                y2 = treeSetY.floor(pairs2[i].y);
-            } else {
-                y2 = treeSetY.last();
-            }
-
-            for (Pair pair : pairTreeSet) {
-                if (pair.x >= x1 && pair.x <= x2 && pair.y >= y1 && pair.y <= y2) {
-                    count++;
-                }
-            }
-
-            sb.append(count).append("\n");
+            sb.append(sum).append("\n");
         }
 
         System.out.println(sb);
