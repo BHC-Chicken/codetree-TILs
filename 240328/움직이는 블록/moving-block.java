@@ -23,10 +23,12 @@ public class Main {
             int min = list.get(0);
             int max = list.get(list.size() - 1);
 
-            list.set(0, min + 1);
-            list.set(list.size() - 1, max - 1);
+            int diff = (max - min) / 2;
 
-            count++;
+            list.set(0, min + diff);
+            list.set(list.size() - 1, max - diff);
+
+            count += diff;
 
             Collections.sort(list);
         }
