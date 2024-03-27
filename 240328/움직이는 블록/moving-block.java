@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class Main {
@@ -11,26 +10,22 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         ArrayList<Integer> list = new ArrayList<>();
         int n = Integer.parseInt(br.readLine());
+        int total = 0;
         int count = 0;
 
         for (int i = 0; i < n; i++) {
-            list.add(Integer.parseInt(br.readLine()));
+            int num = Integer.parseInt(br.readLine());
+            list.add(num);
+
+            total += num;
         }
 
-        Collections.sort(list);
+        int avg = total / list.size();
 
-        while (list.get(0) != list.get(list.size() - 1)) {
-            int min = list.get(0);
-            int max = list.get(list.size() - 1);
-
-            int diff = (max - min) / 2;
-
-            list.set(0, min + diff);
-            list.set(list.size() - 1, max - diff);
-
-            count += diff;
-
-            Collections.sort(list);
+        for (int i : list) {
+            if (i > avg) {
+                count += i - avg;
+            }
         }
 
         System.out.println(count);
