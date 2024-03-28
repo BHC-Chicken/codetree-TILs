@@ -11,48 +11,48 @@ public class Main {
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
         int[] arr = new int[n + 1];
+
+        int count = 0;
         int result = 0;
-        int one = 0;
+        int oneCount = 0;
+
+        if (n <= m) {
+            System.out.println(1);
+
+            return;
+        }
 
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n ; i++) {
             int num = Integer.parseInt(st.nextToken());
             arr[i] = num;
-            
+
             if (num == 1) {
-                one++;
+                oneCount++;
             }
         }
-        
+
         if (m == 0) {
-            System.out.println(one);
-            
+            System.out.println(oneCount);
+
             return;
         }
 
         boolean check = false;
-        boolean resultCheck = false;
-        int count = 0;
 
-        for (int i = 1; i <= n; i++) {
-            if (arr[i] == 1 && !check && !resultCheck) {
+        for (int i = 1; i <= n ; i++) {
+            if (arr[i] == 1 && !check) {
+                count++;
                 check = true;
-                count++;
-            } else if (check) {
-                count++;
-            } else if (resultCheck) {
-                count--;
+            } else {
+                if (count == m + 1) {
+                    result++;
+                    i += (count - 1);
 
-                if (count == 0) {
-                    resultCheck = false;
+                    check = false;
+                    count = 0;
                 }
-            }
-
-            if (count == m + 1) {
-                result++;
-                count--;
-                resultCheck = true;
-                check = false;
+                count++;
             }
         }
 
