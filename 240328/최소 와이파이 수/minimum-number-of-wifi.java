@@ -12,10 +12,22 @@ public class Main {
         int m = Integer.parseInt(st.nextToken());
         int[] arr = new int[n + 1];
         int result = 0;
+        int one = 0;
 
         st = new StringTokenizer(br.readLine());
         for (int i = 1; i <= n; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            int num = Integer.parseInt(st.nextToken());
+            arr[i] = num;
+            
+            if (num == 1) {
+                one++;
+            }
+        }
+        
+        if (m == 0) {
+            System.out.println(one);
+            
+            return;
         }
 
         boolean check = false;
