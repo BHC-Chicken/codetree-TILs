@@ -7,6 +7,7 @@ public class Main {
     static int n;
     static int m;
     static int[] arr;
+    static int[] size;
 
     static int find(int a) {
         if (a == arr[a]) {
@@ -21,17 +22,7 @@ public class Main {
         int findB = find(b);
 
         arr[findA] = findB;
-    }
-
-    static int findSameNums(int a) {
-        int count = 0;
-        for (int i : arr) {
-            if (i == a) {
-                count++;
-            }
-        }
-
-        return count;
+        size[findB] += size[findA];
     }
 
     public static void main(String[] args) throws IOException {
@@ -43,9 +34,11 @@ public class Main {
         m = Integer.parseInt(st.nextToken());
 
         arr = new int[n + 1];
+        size = new int[n + 1];
 
         for (int i = 1; i <= n; i++) {
             arr[i] = i;
+            size[i] = 1;
         }
 
         for (int i = 0; i < m; i++) {
@@ -62,7 +55,7 @@ public class Main {
                 union(a, b);
             } else {
                 int root = find(a);
-                sb.append(findSameNums(root)).append("\n");
+                sb.append(size[root]).append("\n");
             }
         }
 
