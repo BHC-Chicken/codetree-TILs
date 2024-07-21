@@ -8,7 +8,6 @@ public class Main {
     static int m;
     static int k;
     static int[] arr;
-    static int[] nums;
 
     static int find(int x) {
         if (arr[x] == x) {
@@ -51,10 +50,10 @@ public class Main {
 
         st = new StringTokenizer(br.readLine());
 
-        int root = find(1);
+        int root = find(Integer.parseInt(st.nextToken()));
 
-        for (int i = 2; i <= k; i++) {
-            if (root != find(i)) {
+        while (st.hasMoreTokens()) {
+            if (root != find(Integer.parseInt(st.nextToken()))) {
                 System.out.println(0);
 
                 return;
