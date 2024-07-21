@@ -20,15 +20,10 @@ public class Main {
     static void union(int a, int b) {
         int findA = find(a);
         int findB = find(b);
-
-        if (findA != findB) {
-            if (size[findA] < size[findB]) {
-                int temp = findA;
-                findA = findB;
-                findB = temp;
-            }
-            arr[findB] = findA;
-            size[findA] += size[findB];
+        
+        if(findA != findB) {
+            arr[findA] = findB;
+            size[findB] += size[findA];
         }
     }
 
