@@ -21,8 +21,15 @@ public class Main {
         int findA = find(a);
         int findB = find(b);
 
-        arr[findA] = findB;
-        size[findB] += size[findA];
+        if (findA != findB) {
+            if (size[findA] < size[findB]) {
+                int temp = findA;
+                findA = findB;
+                findB = temp;
+            }
+            arr[findB] = findA;
+            size[findA] += size[findB];
+        }
     }
 
     public static void main(String[] args) throws IOException {
