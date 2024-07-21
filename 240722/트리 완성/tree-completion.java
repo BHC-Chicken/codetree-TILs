@@ -7,7 +7,6 @@ public class Main {
     static int n;
     static int m;
     static int[] arr;
-    static boolean circle;
 
     static int find(int a) {
         if (a == arr[a]) {
@@ -23,8 +22,6 @@ public class Main {
 
         if (findA != findB) {
             arr[findA] = findB;
-        } else {
-            circle = true;
         }
     }
 
