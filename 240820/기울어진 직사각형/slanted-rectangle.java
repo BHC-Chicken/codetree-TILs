@@ -16,16 +16,27 @@ public class Main {
 
     static int search(int x, int y) {
         int sum = 0;
-        sum += map[x][y];
+        int count = 1;
 
         for (int i = 0; i < 4; i++) {
-            x += dx[i];
-            y += dy[i];
+            if (inRange(x + dx[i], y + dy[i])) {
+                x += dx[i];
+                y += dy[i];
+                count++;
+            } else {
+                break;
+            }
             while (inRange(x, y)) {
                 sum += map[x][y];
                 x += dx[i];
                 y += dy[i];
             }
+            x -= dx[i];
+            y -= dy[i];
+        }
+
+        if (count < 4) {
+            return -1;
         }
 
         return sum;
