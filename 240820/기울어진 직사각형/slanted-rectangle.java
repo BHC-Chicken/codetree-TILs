@@ -10,33 +10,42 @@ public class Main {
     static int[] dx = {-1, -1, 1, 1};
     static int[] dy = {1, -1, -1, 1};
 
-    static boolean inRange(int x, int y) {
-        return x >= 0 && x < n && y >= 0 && y < n;
+    static boolean inRange(int x, int y, int z) {
+        return x >= 0 && x < z && y >= 0 && y < z;
     }
 
     static int search(int x, int y) {
         int sum = 0;
+        int temp = 0;
         int count = 1;
+        int startX = x;
+        int startY = y;
 
-        for (int i = 0; i < 4; i++) {
-            if (inRange(x + dx[i], y + dy[i])) {
-                x += dx[i];
-                y += dy[i];
-                count++;
-            } else {
-                break;
+        for (int z = 1; z <= n; z++) {
+            for (int i = 0; i < 4; i++) {
+                if (inRange(x + dx[i], y + dy[i], z)) {
+                    x += dx[i];
+                    y += dy[i];
+                    count++;
+                } else {
+                    break;
+                }
+                while (inRange(x, y, z)) {
+                    temp += map[x][y];
+                    x += dx[i];
+                    y += dy[i];
+                }
+                x -= dx[i];
+                y -= dy[i];
             }
-            while (inRange(x, y)) {
-                sum += map[x][y];
-                x += dx[i];
-                y += dy[i];
-            }
-            x -= dx[i];
-            y -= dy[i];
-        }
 
-        if (count < 4) {
-            return -1;
+            if (count >= 4 && x == startX && y == startY) {
+                sum = Math.max(sum, temp);
+            }
+            temp = 0;
+            count = 1;
+            x = startX;
+            y = startY;
         }
 
         return sum;
