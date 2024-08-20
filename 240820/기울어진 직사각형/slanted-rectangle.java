@@ -10,45 +10,27 @@ public class Main {
     static int[] dx = {-1, -1, 1, 1};
     static int[] dy = {1, -1, -1, 1};
 
-    static boolean inRange(int x, int y, int z) {
-        return x >= 0 && x < z && y >= 0 && y < z;
+    static boolean inRange(int x, int y) {
+        return x >= 0 && x < n && y >= 0 && y < n;
     }
 
-    static int search(int x, int y) {
-        int sum = 0;
-        int temp = 0;
-        int count = 1;
-        int startX = x;
-        int startY = y;
+    public static int getScore(int x, int y, int k, int l) {
+        int[] moveNum = new int[]{k, l, k, l};
+        int sumOfNums = 0;
 
-        for (int z = 1; z <= n; z++) {
-            for (int i = 0; i < 4; i++) {
-                if (inRange(x + dx[i], y + dy[i], z)) {
-                    x += dx[i];
-                    y += dy[i];
-                    count++;
-                } else {
-                    break;
+        for(int d = 0; d < 4; d++)
+            for(int q = 0; q < moveNum[d]; q++) {
+                x += dx[d];
+                y += dy[d];
+
+                if(!inRange(x, y)) {
+                    return 0;
                 }
-                while (inRange(x, y, z)) {
-                    temp += map[x][y];
-                    x += dx[i];
-                    y += dy[i];
-                }
-                x -= dx[i];
-                y -= dy[i];
+
+                sumOfNums += map[x][y];
             }
 
-            if (count >= 4 && x == startX && y == startY) {
-                sum = Math.max(sum, temp);
-            }
-            temp = 0;
-            count = 1;
-            x = startX;
-            y = startY;
-        }
-
-        return sum;
+        return sumOfNums;
     }
 
     public static void main(String[] args) throws IOException {
@@ -64,11 +46,11 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                result = Math.max(result, search(i, j));
-            }
-        }
+        for(int i = 0; i < n; i++)
+            for(int j = 0; j < n; j++)
+                for(int k = 1; k < n; k++)
+                    for(int l = 1; l < n; l++)
+                        result = Math.max(result, getScore(i, j, k, l));
 
         System.out.println(result);
     }
