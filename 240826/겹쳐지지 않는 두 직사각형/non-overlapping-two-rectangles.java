@@ -6,8 +6,8 @@ import java.util.StringTokenizer;
 public class Main {
     static int n;
     static int m;
-    static int[][] map;
-    static int[][] board;
+    static int[][] map = new int[5][5];
+    static int[][] board = new int[5][5];
 
     public static void clearBoard() {
         for(int i = 0; i < n; i++)
@@ -83,9 +83,6 @@ public class Main {
 
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
-
-        map = new int[n][m];
-        board = new int[n][m];
 
         for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
