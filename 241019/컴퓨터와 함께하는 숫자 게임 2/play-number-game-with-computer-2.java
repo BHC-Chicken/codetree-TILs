@@ -34,12 +34,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        num = Integer.parseInt(br.readLine());
+        num = Long.parseLong(br.readLine());
 
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        a = Integer.parseInt(st.nextToken());
-        b = Integer.parseInt(st.nextToken());
+        a = Long.parseLong(st.nextToken());
+        b = Long.parseLong(st.nextToken());
 
         long min = Long.MAX_VALUE;
         long max = -1;
