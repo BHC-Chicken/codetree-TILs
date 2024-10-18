@@ -27,16 +27,18 @@ public class Main {
             boolean flag = true;
 
             while (left <= right) {
-                if (map[left] == find) {
+                int mid = (left + right) / 2;
+
+                if (map[mid] == find) {
                     flag = false;
-                    sb.append(left).append("\n");
+                    sb.append(mid).append("\n");
                     break;
                 }
 
-                if (map[left] < find) {
-                    left++;
+                if (map[mid] < find) {
+                    left = mid + 1;
                 } else {
-                    right--;
+                    right = mid - 1;
                 }
             }
 
