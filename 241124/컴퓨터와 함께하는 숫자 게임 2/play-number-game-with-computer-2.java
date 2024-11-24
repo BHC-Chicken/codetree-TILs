@@ -47,9 +47,9 @@ class GameSol {
 
     public void init() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        size = Integer.parseInt(br.readLine());
+        size = Long.parseLong(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        start = Integer.parseInt(st.nextToken());
-        end = Integer.parseInt(st.nextToken());
+        start = Long.parseLong(st.nextToken());
+        end = Long.parseLong(st.nextToken());
     }
 }
