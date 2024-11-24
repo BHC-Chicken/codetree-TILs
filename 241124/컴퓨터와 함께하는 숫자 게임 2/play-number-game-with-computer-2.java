@@ -20,7 +20,7 @@ class GameSol {
             min = Math.min(min, cnt);
             max = Math.max(max, cnt);
         }
-        sb.append(min+1).append(" ").append(max+1);
+        sb.append(min).append(" ").append(max);
         System.out.print(sb);
     }
 
