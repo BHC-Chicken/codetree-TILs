@@ -25,7 +25,7 @@ class GameSol {
     }
 
     private int gameStart(long target) {
-        long left = 1, right = end;
+        long left = 1, right = size;
         int cnt = 0;
         while(left<=right) {
             long mid = (left+right)/2;
