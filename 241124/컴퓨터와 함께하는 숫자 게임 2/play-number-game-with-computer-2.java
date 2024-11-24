@@ -10,12 +10,12 @@ public class Main {
 }
 
 class GameSol {
-    int size, start, end;
+    long size, start, end;
     int min = Integer.MAX_VALUE;
     int max = Integer.MIN_VALUE;
     public void solve() {
         StringBuilder sb = new StringBuilder();
-        for(int time = start; time <= end; time++) {
+        for(long time = start; time <= end; time++) {
             int cnt = gameStart(time);
             min = Math.min(min, cnt);
             max = Math.max(max, cnt);
@@ -24,10 +24,11 @@ class GameSol {
         System.out.print(sb);
     }
 
-    private int gameStart(int target) {
-        int left = 1, right = end, cnt = 0;
+    private int gameStart(long target) {
+        long left = 1, right = end;
+        int cnt = 0;
         while(left<=right) {
-            int mid = (left+right)/2;
+            long mid = (left+right)/2;
             cnt++;
             /* 맞췄으면 횟수 반환 */
             if(target == mid) {
