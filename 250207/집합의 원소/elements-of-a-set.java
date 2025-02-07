@@ -16,10 +16,7 @@ public class Main {
             return x;
         }
 
-        int f = find(arr[x]);
-        arr[x] = f;
-
-        return f;
+        return arr[x] = find(arr[x]);
     }
 
     public static void main(String[] args) throws IOException {
@@ -45,11 +42,9 @@ public class Main {
             int b = Integer.parseInt(st.nextToken());
             
             if(cmd == 0) {
-                if(arr[a] != arr[b]) {
-                    union(a, b);
-                }
+                union(a, b);
             } else {
-                if(arr[a] == arr[b]) {
+                if(find(a) == find(b)) {
                     sb.append(1).append("\n");
                 } else {
                     sb.append(0).append("\n");
