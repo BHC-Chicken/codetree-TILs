@@ -45,7 +45,9 @@ public class Main {
             int b = Integer.parseInt(st.nextToken());
             
             if(cmd == 0) {
-                union(a, b);
+                if(arr[a] != arr[b]) {
+                    union(a, b);
+                }
             } else {
                 if(arr[a] == arr[b]) {
                     sb.append(1).append("\n");
